@@ -9,12 +9,24 @@ Inserting a <!-- more --> comment into your post will prevent the post content b
 
 demo: [fangpeishi.com](http://fangpeishi.com)
 
+```css
+.another-read-more-link {
+    background: #eee;
+    display: inline-block;
+    padding: .4em .4em;
+    margin-right: .5em;
+    text-decoration: none;
+    color: #737373;
+    transition: background-color 0.5s;
+}
+```
+
+![demo](http://127.0.0.1:8000/images/2016/another_read_more_link_demo.jpg)
 
 ###Settings
 
 ```
 
 ANOTHER_READ_MORE_LINK = "Read more"
-ANOTHER_READ_MORE_LINK_FORMAT = "<a class="another-read-more-link" href="/{url}" >{text}</a>
-"
+ANOTHER_READ_MORE_LINK_FORMAT = "<a class="another-read-more-link" href="/{url}" >{text}</a>"
 ```
