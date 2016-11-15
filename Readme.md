@@ -21,7 +21,7 @@ demo: [fangpeishi.com](http://fangpeishi.com)
 }
 ```
 
-![demo](http://127.0.0.1:8000/images/2016/another_read_more_link_demo.jpg)
+![demo](http://fangpeishi.com/images/2016/another_read_more_link_demo.jpg)
 
 ###Settings
 
