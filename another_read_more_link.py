@@ -15,7 +15,7 @@ def insert_read_more_link(instance):
 
     ANOTHER_READ_MORE_LINK = instance.settings.get('ANOTHER_READ_MORE_LINK', 'Continue ->')
     ANOTHER_READ_MORE_LINK_FORMAT = instance.settings.get('ANOTHER_READ_MORE_LINK_FORMAT',
-                                                          '<a class="another-read-more-link" href="/{url}" >{text}</a>')
+                                                          '<a class="another-read-more-link" href="{url}">{text}</a>')
 
     content = instance._content
 
@@ -32,7 +32,11 @@ def insert_read_more_link(instance):
         summary = content[0:marker_location]
 
     if ANOTHER_READ_MORE_LINK:
-        read_more_link =  ANOTHER_READ_MORE_LINK_FORMAT.format(url=instance.url, text=ANOTHER_READ_MORE_LINK)
+        if instance.settings.get('RELATIVE_URLS'):
+            read_more_link = ANOTHER_READ_MORE_LINK_FORMAT.format(url=instance.url, text=ANOTHER_READ_MORE_LINK)
+        else:
+            absolute_url = '{}/{}'.format(instance.settings.get('SITEURL'), instance.url)
+            read_more_link = ANOTHER_READ_MORE_LINK_FORMAT.format(url=absolute_url, text=ANOTHER_READ_MORE_LINK)
         summary = summary  + read_more_link
 
     instance._summary = summary
