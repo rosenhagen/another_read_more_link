@@ -1,4 +1,4 @@
-##Pelican-plugins: Another Read More Link
+## Pelican-plugins: Another Read More Link
 
  - Inspired by [Octopress](http://octopress.org/docs/blogging/)
  - Reference to [read_more_link](https://github.com/getpelican/pelican-plugins/tree/master/read_more_link)
@@ -23,7 +23,7 @@ demo: [fangpeishi.com](http://fangpeishi.com)
 
 ![demo](http://fangpeishi.com/images/2016/another_read_more_link_demo.jpg)
 
-###Settings
+### Settings
 
 ```
 
