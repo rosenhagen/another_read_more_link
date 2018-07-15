@@ -28,5 +28,5 @@ demo: [fangpeishi.com](http://fangpeishi.com)
 ```
 
 ANOTHER_READ_MORE_LINK = "Read more"
-ANOTHER_READ_MORE_LINK_FORMAT = "<a class="another-read-more-link" href="{url}" >{text}</a>"
+ANOTHER_READ_MORE_LINK_FORMAT = '<a class="another-read-more-link" href="{url}">{text}</a>'
 ```
