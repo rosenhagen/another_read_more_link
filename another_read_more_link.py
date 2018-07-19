@@ -22,7 +22,7 @@ def insert_read_more_link(instance):
     marker_location = content.find("<!-- more -->")
 
     if marker_location == -1:
-        if hasattr(instance, '_summary'):
+        if hasattr(instance, '_summary') or 'summary' in instance.metadata:
             summary = instance._summary
         else:
             instance._summary = instance._content
@@ -39,7 +39,13 @@ def insert_read_more_link(instance):
             read_more_link = ANOTHER_READ_MORE_LINK_FORMAT.format(url=absolute_url, text=ANOTHER_READ_MORE_LINK)
         summary = summary  + read_more_link
 
-    instance._summary = summary
+    # default_status was added to Pelican Content objects after 3.7.1.
+    # Its use here is strictly to decide on how to set the summary.
+    # There's probably a better way to do this but I couldn't find it.
+    if hasattr(instance, 'default_status'):
+        instance.metadata['summary'] = summary
+    else:
+        instance._summary = summary
     instance.has_summary = True
 
 def run_plugin(generators):
