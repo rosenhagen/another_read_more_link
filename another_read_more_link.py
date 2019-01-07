@@ -17,7 +17,7 @@ def insert_read_more_link(instance):
     ANOTHER_READ_MORE_LINK_FORMAT = instance.settings.get('ANOTHER_READ_MORE_LINK_FORMAT',
                                                           '<a class="another-read-more-link" href="{url}">{text}</a>')
 
-    content = instance._content
+    content = instance._update_content(instance._content, instance.settings.get('SITEURL'))
 
     marker_location = content.find("<!-- more -->")
 
