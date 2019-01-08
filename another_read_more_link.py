@@ -25,7 +25,7 @@ def insert_read_more_link(instance):
         if hasattr(instance, '_summary') or 'summary' in instance.metadata:
             summary = instance._summary
         else:
-            instance._summary = instance._content
+            set_summary(instance, content)
             instance.has_summary = True
             return
     else:
@@ -37,22 +37,28 @@ def insert_read_more_link(instance):
         else:
             absolute_url = '{}/{}'.format(instance.settings.get('SITEURL'), instance.url)
             read_more_link = ANOTHER_READ_MORE_LINK_FORMAT.format(url=absolute_url, text=ANOTHER_READ_MORE_LINK)
-        summary = summary  + read_more_link
+        summary = summary + read_more_link
 
-    # default_status was added to Pelican Content objects after 3.7.1.
-    # Its use here is strictly to decide on how to set the summary.
-    # There's probably a better way to do this but I couldn't find it.
+    set_summary(instance, summary)
+    instance.has_summary = True
+
+
+# default_status was added to Pelican Content objects after 3.7.1.
+# Its use here is strictly to decide on how to set the summary.
+# There's probably a better way to do this but I couldn't find it.
+def set_summary(instance, summary):
     if hasattr(instance, 'default_status'):
         instance.metadata['summary'] = summary
     else:
         instance._summary = summary
-    instance.has_summary = True
+
 
 def run_plugin(generators):
     for generator in generators:
         if isinstance(generator, ArticlesGenerator):
             for article in generator.articles:
                 insert_read_more_link(article)
+
 
 def register():
     try:
