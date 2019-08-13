@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import re
+
 from pelican import signals, contents
 from pelican.utils import truncate_html_words
 from pelican.generators import ArticlesGenerator
@@ -19,7 +21,8 @@ def insert_read_more_link(instance):
 
     content = instance._update_content(instance._content, instance.settings.get('SITEURL'))
 
-    marker_location = content.find("<!-- more -->")
+    marker_search = re.search(r'<!-- *more *-->', content)
+    marker_location = marker_search.start() if marker_search else -1
 
     if marker_location == -1:
         if hasattr(instance, '_summary') or 'summary' in instance.metadata:
